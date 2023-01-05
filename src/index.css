@@ -11,3 +11,94 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#moduleName {
+  margin-bottom: 0px;
+}
+
+.moduleFunc {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.discontinued {
+  margin-bottom: 10px;
+  color: red;
+  font-weight: bold;
+}
+
+.moduleTitle {
+  text-align: center;
+}
+
+.moduleGroup {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.modules {
+  display: flexbox;
+  flex-direction: row;
+  width: fit-content;
+  margin-left: 20px;
+}
+
+#options {
+  width: fit-content;
+}
+
+#search {
+  width: 250px;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+}
+
+.createBar {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.createButton {
+  margin-right: 10px;
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.brands {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.singleBrand {
+  display: flex;
+  flex-direction: row;
+}
+
+.brandImg {
+  max-width: 150px;
+  max-height: 100px;
+}
+
+.image {
+  display: flex;
+  margin: auto;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
