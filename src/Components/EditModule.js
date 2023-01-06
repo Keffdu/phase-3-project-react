@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 
-function ModuleForm({ setSynthData, synthData, manufacturers }) {
-    let history = useHistory()
-    const [formData, setFormData] = useState({
+function EditModule({ onModuleUpdate, manufacturers }) {
+    const [editModule, setEditModule] = useState({
         module_name: "",
         manufacturer_name: undefined,
         function: "",
@@ -21,25 +20,30 @@ function ModuleForm({ setSynthData, synthData, manufacturers }) {
         manufacturer_id: undefined
     })
 
+    const { id } = useParams()
+    let history = useHistory()
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/edit/module/${id}`)
+        .then(resp => resp.json())
+        .then((synthDetails) => setEditModule(synthDetails))
+    }, [])
+
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(formData)
-        fetch("http://localhost:9292/modules", {
-      method: "POST",
+        console.log(editModule)
+        fetch(`http://localhost:9292/edit/module/${id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(editModule),
     })
       .then((r) => r.json())
-      .then((newSynth) => setSynthData([...synthData, newSynth]))
-      alert("Successfully created new module")
+      .then((editedSynth) => onModuleUpdate(editedSynth))
+      alert(`Successfully edited ${editModule.module_name} `)
       history.push("/home")
     }
-
-    // console.log(formData)
-
-    const mfgnames = manufacturers.map((mfg) => <option className="options" value={mfg.id}>{mfg.name}</option>)
 
     function handleChange(e) {
         console.log(e.target.name)
@@ -47,8 +51,10 @@ function ModuleForm({ setSynthData, synthData, manufacturers }) {
 
         const name = e.target.name
         const value = e.target.value
-        setFormData({...formData, [name]: value,})
+        setEditModule({...editModule, [name]: value,})
     } 
+
+    const mfgnames = manufacturers.map((mfg) => <option className="options" value={mfg.id}>{mfg.name}</option>)
 
     return (
         <div className="form">
@@ -60,56 +66,56 @@ function ModuleForm({ setSynthData, synthData, manufacturers }) {
             className="selectSpacing"
             name="manufacturer_id"
             onChange={handleChange}
-            value={formData.manufacturer_name}>
-                <option className="options">Choose Manufacturer</option>
+            value={editModule.manufacturer_id}>
             {mfgnames}
             </select>
         <label className="labels">Module Name:</label>
             <input
             className="selectSpacing"
-            value={formData.module_name}
+            value={editModule.module_name}
             onChange={handleChange}
             type="text"
             name="module_name"/>
         <label className="labels">HP:</label>
             <input
             className="selectSpacing"
-            value={formData.hp}
+            value={editModule.hp}
             onChange={handleChange}
             type="number"
             name="hp"/>
         <label className="labels">Function:</label>
             <input
             className="selectSpacing"
-            value={formData.function}
+            value={editModule.function}
             onChange={handleChange}
             type="text"
             name="function"/>
         <label className="labels">Description:</label>
             <textarea
-            className="selectSpacing"
-            value={formData.description}
+            className="textarea"
+            value={editModule.description}
             onChange={handleChange}
             type="text"
-            name="description"/>
+            name="description"
+            rows="15" cols="15"/>
         <label className="labels">MSRP</label>
             <input
             className="selectSpacing"
-            value={formData.msrp}
+            value={editModule.msrp}
             onChange={handleChange}
             type="number"
             name="msrp"/>
         <label className="labels">Image URL</label>
             <input
             className="selectSpacing"
-            value={formData.image}
+            value={editModule.image}
             onChange={handleChange}
             type="text"
             name="image"/>
         <label className="labels">Release Year</label>
             <input
             className="selectSpacing"
-            value={formData.year_released}
+            value={editModule.year_released}
             onChange={handleChange}
             type="number"
             name="year_released"/>
@@ -121,4 +127,4 @@ function ModuleForm({ setSynthData, synthData, manufacturers }) {
     )
 }
 
-export default ModuleForm;
+export default EditModule;

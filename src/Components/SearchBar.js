@@ -10,6 +10,8 @@ function SearchBar({ search, onSearchChange, option, onOptionChange, setSynthDat
         fetch(`http://localhost:9292/${option}/${search}`)
         .then(resp => resp.json())
         .then((searchData) => setSynthData(searchData))
+        onSearchChange("")
+        onOptionChange("")
     }
 
 
@@ -21,6 +23,7 @@ function SearchBar({ search, onSearchChange, option, onOptionChange, setSynthDat
                         id="options"
                         onChange={(e) => onOptionChange(e.target.value)}
                         value={option}>
+                        <option className="options">Search By..</option>
                         <option value={"module_name"}>Module Name</option>
                         <option value={"function"}>Function</option>
                         <option value={"hp"}>HP</option>

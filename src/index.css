@@ -28,16 +28,24 @@ a {
   margin-bottom: 15px;
 }
 
+.textarea {
+  margin-bottom: 15px;
+  width: 25vw;
+}
+
 #moduleName {
   margin-bottom: 0px;
 }
 
 .moduleFunc {
+  display: flex;
+  justify-content: center;
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: center;
   max-width: 400px;
 }
+
 
 .discontinued {
   margin-bottom: 10px;
@@ -136,6 +144,7 @@ justify-content: center;
 .image {
   display: flex;
   margin: auto;
+  /* max-width: 350px; */
 }
 
 img:hover {

@@ -4,13 +4,13 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Header from './Components/Header'
 import ModuleForm from './Components/ModuleForm';
-// import ModuleList from './Components/ModuleList';
-// import SearchBar from './Components/SearchBar';
+import MfgForm from './Components/MfgForm';
+import EditModule from './Components/EditModule';
 
 function App() {
   const [synthData, setSynthData] = useState([])
   const [search, setSearch] = useState("")
-  const [option, setOption] = useState("module_name")
+  const [option, setOption] = useState("")
   const [manufacturers, setManufacturers] = useState([])
 
   useEffect(() => {
@@ -19,8 +19,16 @@ function App() {
       .then((synthInfo) => setSynthData(synthInfo))
   }, [])
 
-// console.log(`search: ${search}`)
-// console.log(`option: ${option}`)
+function handleUpdateModule(editedObj) {
+  const updatedModule = synthData.map((mod) => {
+    if (mod.id === editedObj.id) {
+      return editedObj
+    } else {
+      return mod
+    }
+  })
+  setSynthData(updatedModule)
+}
 
 
   return (
@@ -45,6 +53,18 @@ function App() {
             setSynthData={setSynthData}
             synthData={synthData}
             manufacturers={manufacturers}/>
+          </Route>
+          <Route path="/new_manufacturer">
+            <MfgForm
+            manufacturers={manufacturers}
+            setManufacturers={setManufacturers}
+            />
+          </Route>
+          <Route path="/edit/module/:id">
+            <EditModule 
+              manufacturers={manufacturers}
+              onModuleUpdate={handleUpdateModule}
+            />
           </Route>
         </Switch>
     </div>

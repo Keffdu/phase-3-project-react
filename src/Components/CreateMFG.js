@@ -1,9 +1,15 @@
 import React from "react";
+import { useState } from "react";
+import {Link, NavLink} from 'react-router-dom'
 
 function CreateMFG() {
     return (
-        <div>
-            <button>New MFG</button>
+<div className="createButton">
+            <Link to="/new_manufacturer">
+            <button>New Manufacturer</button>
+                {/* <ModuleForm
+                setCreateModule={setCreateModule}/> */}
+            </Link>
         </div>
     )
 }
