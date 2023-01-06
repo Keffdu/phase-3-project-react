@@ -38,8 +38,12 @@ function SearchBar({ search, onSearchChange, option, onOptionChange, setSynthDat
                 </div>
             </form>
             <div className="createBar">
-            <CreateMFG />
-            <CreateModule />
+                <div>
+                    <CreateMFG />
+                </div>
+                <div>
+                    <CreateModule />
+                </div>
             </div>
         </>
 )}

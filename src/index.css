@@ -12,6 +12,22 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+
+.form {
+  margin-top: 75px;
+  display: flex;
+  justify-content: center;
+}
+
+.selectSpacing {
+  margin-bottom: 15px;
+}
+
 #moduleName {
   margin-bottom: 0px;
 }
@@ -61,13 +77,37 @@ code {
 
 .createBar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 10px;
   margin-bottom: 15px;
+  /* height: 100px; */
 }
 
 .createButton {
-  margin-right: 10px;
+display: flex;
+flex-direction: column;  
+justify-content: center;
+}
+
+.checkbox {
+  justify-content: left;
+}
+
+.options {
+  font-size: x-large;
+}
+
+.labels {
+  font-size: larger;
+  margin-bottom: 5px;
+}
+
+.formFormat {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  /* padding-left: auto;
+  padding-right: auto; */
 }
 
 .header {

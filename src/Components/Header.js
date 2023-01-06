@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import {Link, NavLink} from 'react-router-dom'
 
-function Header({ setSynthData }) {
+function Header({ setSynthData, manufacturers, setManufacturers }) {
     const [selectedMFG, setSelectedMFG] = useState(1)
-    const [manufacturers, setManufacturers] = useState([])
+    
     useEffect(() => {
         fetch('http://localhost:9292/manufacturers')
         .then(resp => resp.json())
@@ -34,7 +35,9 @@ function Header({ setSynthData }) {
     return (
     <div >
         <header className='header'>
-            <h1 onClick={goHome} >Synthformation</h1>
+            <Link to="/home">
+                <h1 onClick={goHome} >Synthformation</h1>
+            </Link>
         </header>
         <div className='brands'>
             {brandNames}

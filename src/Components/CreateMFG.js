@@ -2,7 +2,9 @@ import React from "react";
 
 function CreateMFG() {
     return (
-        <button>Create MFG</button>
+        <div>
+            <button>New MFG</button>
+        </div>
     )
 }
 
