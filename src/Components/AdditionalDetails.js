@@ -6,7 +6,6 @@ function AdditionalDetails({ description, id, discont, neg, pos, fiveV, depth, y
     return (
     <div>
         <p className="moduleFunc">{description}</p>
-        <p>Power Consumption: {neg}</p>
     </div>
 )}
 

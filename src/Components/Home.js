@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import ModuleList from "./ModuleList";
 
-function Home({ search, onSearchChange, option, onOptionChange, setSynthData, synthData }) {
+function Home({  onDeleteSynth, search, onSearchChange, option, onOptionChange, setSynthData, synthData }) {
     return (
         <div>
         <SearchBar
@@ -12,7 +12,9 @@ function Home({ search, onSearchChange, option, onOptionChange, setSynthData, sy
         onOptionChange={onOptionChange}
         setSynthData={setSynthData}
         />
-        <ModuleList synthData={synthData}/>
+        <ModuleList 
+        onDeleteSynth={onDeleteSynth}
+        synthData={synthData}/>
         </div>)
 }
 

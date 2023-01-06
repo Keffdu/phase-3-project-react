@@ -30,6 +30,11 @@ function handleUpdateModule(editedObj) {
   setSynthData(updatedModule)
 }
 
+function handleDeleteSynth(id) {
+  const updatedSynth = synthData.filter((mod) => mod.id !== id);
+  setSynthData(updatedSynth);
+}
+
 
   return (
     <div>
@@ -46,6 +51,7 @@ function handleUpdateModule(editedObj) {
             onOptionChange={setOption}
             setSynthData={setSynthData}
             synthData={synthData}
+            onDeleteSynth={handleDeleteSynth}
             />
           </Route>
           <Route path="/new_module">

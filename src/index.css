@@ -151,3 +151,11 @@ img:hover {
   transform: scale(1.05);
 }
 
+.trash{
+  border: none;
+  padding: 0;
+  background: none;
+  
+
+}
+

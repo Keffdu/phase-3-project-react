@@ -3,9 +3,18 @@ import { Link } from "react-router-dom";
 import React from "react";
 import AdditionalDetails from "./AdditionalDetails";
 
-function ModuleDetails({ id, name, func, description, image, msrp, hp, discont, neg, pos, fiveV, depth, yearReleased, }) {
+function ModuleDetails({ onDeleteSynth, id, name, func, description, image, msrp, hp, discont, neg, pos, fiveV, depth, yearReleased, }) {
 
     const [moreInfo, setMoreInfo] = useState(false)
+
+
+    function handleDelete() {
+        console.log("running")
+        fetch(`http://localhost:9292/delete/module/${id}`, {
+            method: "DELETE",
+        })
+        onDeleteSynth(id)
+    }
 
     return (
     <div className="modules">
@@ -16,13 +25,14 @@ function ModuleDetails({ id, name, func, description, image, msrp, hp, discont, 
                     <span>✏️</span>
             </Link>
                     {func}
-                    <span /*onClick={""}*/ >🗑</span>
+                    <button className="trash" onClick={handleDelete}>🗑</button>
             </h4>
             {moreInfo ? <div className="discontinued">{discont ? "Discontinued" : null }</div> : null}
         </div>
         <img onClick={() => setMoreInfo((moreInfo) => !moreInfo)} 
             className='image' src={image} />
         <h4 className="moduleFunc">Price: ${msrp} | HP: {hp}</h4>
+        <h4 className="moduleFunc">Released: {yearReleased}</h4>
         {moreInfo ?
             <AdditionalDetails
                 id={id}

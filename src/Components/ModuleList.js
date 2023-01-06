@@ -1,7 +1,7 @@
 import React from "react";
 import ModuleDetails from "./ModuleDetails";
 
-function ModuleList ({ synthData }) {
+function ModuleList ({ synthData, onDeleteSynth }) {
     const modules = synthData.map((mod) => {
         return (
             <ModuleDetails
@@ -19,6 +19,7 @@ function ModuleList ({ synthData }) {
             fiveV={mod.five_v}
             depth={mod.depth}
             yearReleased={mod.year_released}
+            onDeleteSynth={onDeleteSynth}
             />)
             
     })
